@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_11_26_092100) do
+ActiveRecord::Schema.define(version: 2025_11_26_095827) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -18,7 +18,8 @@ ActiveRecord::Schema.define(version: 2025_11_26_092100) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "total_views", precision: 9, scale: 2, default: "0.0"
-    t.integer "status"
+    t.integer "status", default: 0
+    t.index ["title"], name: "index_articles_on_title"
   end
 
 end
