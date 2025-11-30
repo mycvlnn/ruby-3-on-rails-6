@@ -1,0 +1,8 @@
+
+<% flash.each do |name, msg| %>
+    <div 
+        style="<%=  name == 'error' ? "color: red": 'color: green' %>"
+    >
+        <%= msg %>
+    </div>
+<% end %>
