@@ -1,5 +1,23 @@
 @import "bootstrap/dist/css/bootstrap";
 
-.navbar {
-    background-color: #fdf6ea !important;
+#home-container {
+    margin-top: 30px;
+}
+
+#hero-image {
+    background-image: asset-url("hero_image");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 425px;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+#page-content {
+    flex: 1 0 auto;
+    background-color: lightgray;
 }
