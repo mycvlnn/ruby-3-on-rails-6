@@ -1,8 +1,12 @@
 
-<% flash.each do |name, msg| %>
-    <div 
-        style="<%=  name == 'error' ? "color: red": 'color: green' %>"
-    >
-        <%= msg %>
-    </div>
-<% end %>
+<div class="container">
+    <% flash.each do |name, msg| %>
+        <div class="alert alert-success" role="alert">
+            <%= msg %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+    <% end %>
+
+</div>
