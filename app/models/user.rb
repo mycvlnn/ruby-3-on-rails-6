@@ -6,4 +6,6 @@ class User < ApplicationRecord
             uniqueness: { case_sensitive: false },
             length: { maximum: 105 },
             format: { with: Constant::EMAIL_REGEX, message: 'is not a valid. Please use correct format like this: levana@gmail.com' }
+
+  before_save { self.email = email.downcase }
 end
