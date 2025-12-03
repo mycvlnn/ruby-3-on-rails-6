@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_11_26_104859) do
+ActiveRecord::Schema.define(version: 2025_12_03_092500) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2025_11_26_104859) do
     t.decimal "total_views", precision: 9, scale: 2, default: "0.0"
     t.integer "status", default: 0
     t.integer "user_id"
+    t.string "author"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
@@ -28,6 +29,7 @@ ActiveRecord::Schema.define(version: 2025_11_26_104859) do
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
