@@ -1,5 +1,5 @@
 <div class="container">
-    <%= render 'shared/errors' %>
+    <%= render 'shared/errors', target: @article %>
     <%= form_with(model: @article, class: 'shadow p-4 my-3 bg-info rounded', local: true) do |f| %>
         <div class="form-group row">
             <%= f.label :title, class:"col-sm-2 col-form-label text-light" %>
