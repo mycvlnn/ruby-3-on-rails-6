@@ -1,6 +1,6 @@
 
     <% flash.each do |name, msg| %>
-        <div class="alert alert-success mb-0" role="alert">
+        <div class="alert <%= name === 'error' ? 'alert-danger' : 'alert-success' %> mb-0" role="alert">
             <%= msg %>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
