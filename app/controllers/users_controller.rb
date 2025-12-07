@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[edit update show destory]
 
+  def index
+    @users = User.all
+  end
+
   def new
     @user = User.new
   end
@@ -43,6 +47,6 @@ class UsersController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     flash[:error] = 'User not found!'
     # Di chuyển về trang home nếu không tìm thấy
-    redirect_to root_path
+    redirect_to users_path
   end
 end
