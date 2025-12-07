@@ -14,6 +14,12 @@
         <h2 class="text-center mt-4">
             Articles
         </h2>
+        <div class="digg_pagination mt-3">
+            <%= will_paginate @articles, :container => false %>
+        </div>
         <%= render 'articles/articles' %>
+        <div class="digg_pagination mt-3">
+            <%= will_paginate @articles, :container => false %>
+        </div>
     </div>
 </div>

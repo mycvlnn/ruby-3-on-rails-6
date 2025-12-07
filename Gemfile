@@ -29,6 +29,8 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'concurrent-ruby', '1.3.4'
 
+gem 'will_paginate', '~> 4.0'
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3', '~> 1.4'
