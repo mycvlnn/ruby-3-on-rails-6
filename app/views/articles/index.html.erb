@@ -2,31 +2,6 @@
 <div id="page-content">
     <div class="container py-4">
         <h1 class="text-center">Listing all articles</h1>
-        
-         <% @articles.each do |article| %>
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-8 mt-4">
-                    <div class="card text-center">
-                        <div class="card-header font-italic font-weight-light">
-                             <%= article.user.present? ?  "By #{article.user.name}" : 'No author' %>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><%= link_to article.title, article_path(article), class: 'text-success' %></h5>
-                            <p class="card-text">
-                                <%= truncate(article.description, length: 100) %>
-                            </p>
-                            <div class="row justify-content-center">
-                                <%= link_to 'View', article_path(article), class: 'btn btn-outline-success mx-2'  %>
-                                <%= link_to 'Edit', edit_article_path(article), class: 'btn btn-outline-info mx-2' %>
-                                <%= link_to 'Delete', article_path(article), class: 'btn btn-outline-danger mx-2', method: :delete, data: { confirm: 'Are you sure you want to delete?'  } %>
-                            </div>
-                        </div>
-                        <div class="card-footer text-muted">
-                            Created about <%= time_ago_in_words(article.created_at) %> ago, edited about <%= time_ago_in_words(article.updated_at) %> ago
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <% end %>
+        <%= render 'articles' %>
     </div>
 </div>
