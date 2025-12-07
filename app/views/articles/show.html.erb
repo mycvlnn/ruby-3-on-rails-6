@@ -8,8 +8,13 @@
                 <div class="col-12 col-md-8 mt-4">
                     <div class="card text-center">
                         <div class="card-header font-italic font-weight-light">
-                             <%= @article.user.present? ?  "By #{@article.user.name}" : 'No author' %>
+                             <%= @article.user.present? ?  (link_to "By #{@article.user.name}", user_path(@article.user) ) : 'No author' %>
+                              
+                             <div class="mt-2">
+                                <%= link_to gravatar_for(@article.user), user_path(@article.user) %>
+                             </div>
                         </div>
+
                         <div class="card-body">
                             <div class="card-text text-left">
                                 <%= simple_format(@article.description) %>
