@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
+  before_action :require_user, only: [:edit, :update]
   before_action :set_user, only: %i[edit update show destory]
+  before_action :require_same_user, only: [:edit, :update]
 
   def index
     @users = User.paginate(page: params[:page], per_page: 5).preload(:articles)
@@ -49,5 +51,12 @@ class UsersController < ApplicationController
     flash[:error] = 'User not found!'
     # Di chuyển về trang home nếu không tìm thấy
     redirect_to users_path
+  end
+
+  def require_same_user
+    unless current_user == @user
+      flash[:error] = 'You can only update your own profile'
+      redirect_to users_path
+    end
   end
 end
