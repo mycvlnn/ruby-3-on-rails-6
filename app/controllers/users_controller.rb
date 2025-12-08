@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :require_user, only: [:edit, :update]
-  before_action :set_user, only: %i[edit update show destory]
-  before_action :require_same_user, only: [:edit, :update]
+  before_action :require_user, only: %i[edit update]
+  before_action :set_user, only: %i[edit update show destroy]
+  before_action :require_same_user, only: %i[edit update]
 
   def index
     @users = User.paginate(page: params[:page], per_page: 5).preload(:articles)
@@ -36,6 +36,17 @@ class UsersController < ApplicationController
 
   def show
     @articles = @user.articles.paginate(page: params[:page], per_page: 5)
+  end
+
+  def destroy
+    if @user.destroy
+      flash[:success] = 'Account and all associated articles successfully deleted'
+      session[:user_id] = nil
+    else
+      flash[:error] = 'Something went wrong when delete account'
+    end
+
+    redirect_to articles_path
   end
 
   private

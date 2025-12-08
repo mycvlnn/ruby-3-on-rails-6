@@ -3,7 +3,7 @@
                 <div class="col-12 col-md-8 mt-4">
                     <div class="card text-center">
                         <div class="card-header font-italic font-weight-light">
-                             <%= article.user.present? ? (link_to "By #{article.user.name}", article.user) : 'No author' %>
+                             <%= article.user.present? ? (link_to "By #{article.user.name} (ID: #{article.user.id})", article.user) : 'No author' %>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title"><%= link_to article.title, article_path(article), class: 'text-success' %></h5>
