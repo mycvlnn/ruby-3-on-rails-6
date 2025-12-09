@@ -1,10 +1,10 @@
 class ArticlesController < ApplicationController
   before_action :require_user, except: [:index, :show]
   before_action :set_article, only: %i[edit update show destroy]
-  before_action :require_same_user, only: [:edit, :update]
+  before_action :require_same_user, only: %i[edit update destroy]
 
   def index
-    @articles = Article.preload(:user).paginate(page: params[:page], per_page: 5)
+    @articles = Article.preload(:user).paginate(page: params[:page], per_page: 5).order(created_at: :desc)
   end
 
   def show
@@ -62,9 +62,10 @@ class ArticlesController < ApplicationController
   end
 
   def require_same_user
-    unless current_user == @article.user
-      flash[:error] = 'You can only edit or delete your own article'
-      redirect_to articles_path
-    end
+    return if current_user.admin?
+    return if current_user == @article.user
+
+    flash[:error] = 'You can only edit or delete your own article'
+    redirect_to articles_path
   end
 end
