@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :find_user, except: [:index, :new, :create]
+  before_action :find_category, except: %i[index new create]
 
   def index
     @users = Category.all
@@ -9,29 +9,27 @@ class CategoriesController < ApplicationController
   end
 
   def new
-    @user = Category.new
+    @category = Category.new
   end
 
   def edit
   end
 
   def create
-    @user = Category.new(params[:user])
-    if @user.save
+    @category = Category.new(category_params)
+    if @category.save
       flash[:success] = "Category successfully created"
-      redirect_to @user
+      redirect_to @category
     else
-      flash[:error] = "Something went wrong"
       render 'new'
     end
   end
 
   def update
-    if @user.update_attributes(params[:user])
+    if @category.update(category_params)
       flash[:success] = "Category was successfully updated"
-      redirect_to @user
+      redirect_to @category
     else
-      flash[:error] = "Something went wrong"
       render 'edit'
     end
   end
@@ -48,8 +46,11 @@ class CategoriesController < ApplicationController
 
   private
 
-    def find_user
-      @user = Category.find(params[:id])
-    end
+  def find_category
+    @category = Category.find(params[:id])
+  end
 
+  def category_params
+    params.require(:category).permit(:name)
+  end
 end
