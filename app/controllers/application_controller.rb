@@ -16,5 +16,8 @@ class ApplicationController < ActionController::Base
     redirect_to login_path
   end
 
-
+  # Check user is admin
+  def user_admin?
+    logged_in? && current_user.admin?
+  end
 end
