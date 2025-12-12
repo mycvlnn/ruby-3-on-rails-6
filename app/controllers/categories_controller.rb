@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   before_action :find_category, except: %i[index new create]
 
   def index
-    @users = Category.all
+    @categories = Category.paginate(page: params[:page], per_page: 5)
   end
 
   def show
