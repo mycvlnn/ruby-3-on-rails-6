@@ -1,5 +1,9 @@
 class Article < ApplicationRecord
   belongs_to :user
+
+  has_many :article_categories
+  has_many :categories, through: :article_categories
+
   enum status: %i[inactive active archived]
 
   validates :title, presence: true, length: { minimum: 6, maximum: 50 }
