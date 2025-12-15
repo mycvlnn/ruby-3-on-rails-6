@@ -1,7 +1,23 @@
 <div id="page-content">
     <div class="container py-4">
-        <h2>
-           Category name:  <%= @category.name %>
-        </h2>     
+        <h1 class="text-center">
+          <%= @category.name %>
+        </h1>
+        <% if user_admin? %>
+            <div class="text-center mt-2">
+                <%= link_to "Update category", edit_category_path(@category), class: "btn btn-success" %>
+            </div>
+        <% end %>
+      
+        <h2 class="text-center mt-4">
+            Articles
+        </h2>
+        <div class="digg_pagination mt-3">
+            <%= will_paginate @articles, :container => false %>
+        </div>
+        <%= render 'articles/articles' %>
+        <div class="digg_pagination mt-3">
+            <%= will_paginate @articles, :container => false %>
+        </div>
     </div>
 </div>
