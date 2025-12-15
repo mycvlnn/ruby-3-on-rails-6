@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   before_action :require_same_user, only: %i[edit update destroy]
 
   def index
-    @articles = Article.preload(:user).paginate(page: params[:page], per_page: 5).order(created_at: :desc)
+    @articles = Article.preload(:user, :categories).paginate(page: params[:page], per_page: 5).order(created_at: :desc)
   end
 
   def show
